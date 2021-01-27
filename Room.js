@@ -24,7 +24,7 @@ function getData() {firebase.database().ref("/").on('value',function(snapshot) {
   //End code
 });});
 getData();
-function AddRoom(){
+function Add_Room(){
     Add_User = document.getElementById("Input_Room_Name").value;
     console.log(Add_User);
     firebase.database().ref("/").child(Add_User).update({
