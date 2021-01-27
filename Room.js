@@ -14,6 +14,16 @@ var UserName_1 = localStorage.getItem("User_1");
 document.getElementById("UserName_Display").innerHTML = "Welcome " + UserName_1;
 
 firebase.initializeApp(firebaseConfig);
+function getData() {firebase.database().ref("/").on('value',function(snapshot) {document.getElementById("Output").innerHTML ="";snapshot.forEach(function(childSnapshot) {childKey =
+  childSnapshot.key;
+  Room_Names = childKey;
+  //Start code
+  console.log("Room Names: " + Room_Names);
+  Row = "<div class='room_name' id="+Room_Names+" onclick='redirectToRoomName(this.id)'>#"+ Room_Names +"</div><hr>";
+  document.getElementById("Output").innerHTML += Row;
+  //End code
+});});
+getData();
 
 function AddRoom(){
     Add_User = document.getElementById("Input_Room_Name").value;
@@ -21,8 +31,10 @@ function AddRoom(){
     firebase.database().ref("/").child(Add_User).update({
         Purpose: "Adding Room"
     });
+    localStorage.setItem("Room_Name", Add_User);
     document.getElementById("Output").innerHTML += Add_User;
 }
+
 function LogOut(){
   localStorage.removeItem("User_1");
   localStorage.removeItem("Room_Name");
