@@ -10,6 +10,13 @@
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+var UserName_1 = localStorage.getItem("User_1");
+document.getElementById("Username_Display").innerHTML = "Welcome, " + UserName_1;
+function LogOut(){
+  localStorage.removeItem("User_1");
+  localStorage.removeItem("Room_Name");
+  window.location = "Login.html";
+}
 function getData() {firebase.database().ref("/").on('value',function(snapshot) {document.getElementById("Output").innerHTML ="";snapshot.forEach(function(childSnapshot) {childKey =
   childSnapshot.key;
   Room_Names = childKey;
@@ -21,12 +28,6 @@ function getData() {firebase.database().ref("/").on('value',function(snapshot) {
 });});
 }
 getData();
-
-function LogOut(){
-  localStorage.removeItem("User_1");
-  localStorage.removeItem("Room_Name");
-  window.location = "Login.html";
-}
 
 function redirectToRoomName(Name){
   console.log(Name);
