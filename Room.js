@@ -32,6 +32,7 @@ getData();
 function redirectToRoomName(Name){
   console.log(Name);
   localStorage.setItem("Room_Name", Name);
+  window.location = "Page.html";
 }
 
 function Add_Room(){
@@ -41,4 +42,5 @@ function Add_Room(){
       Purpose: "Adding Room"
   });
   document.getElementById("Output").innerHTML += Add_User;
+  document.getElementById("Input_Room_Name").value = "";
 }
